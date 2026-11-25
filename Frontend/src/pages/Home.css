@@ -1,0 +1,42 @@
+.hotel-page {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #244f78;
+  margin: 0;
+}
+
+.hotel-page-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.addhotel{
+    border: none;
+  background: #347fb5;
+  color: white;
+  padding: 11px 23px;
+  border-radius: 25px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.addhotel:hover{
+    background: #245f91;
+  transform: translateY(-2px);
+}
+.search-found {
+  background: #347fb5;
+  color: white;
+  padding: 11px 23px;
+  border-radius: 25px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 20px;
+}

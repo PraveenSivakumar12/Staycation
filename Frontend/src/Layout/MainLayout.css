@@ -1,0 +1,58 @@
+
+/* Main Layout */
+
+.main-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  padding: 30px 5%;
+  min-height: 70vh;
+  background-color: #f8fbff;
+  box-sizing: border-box;
+}
+
+/* Sidebar */
+
+.side-bar {
+  width: 280px;
+  min-width: 280px;
+  background-color: #edf6ff;
+  border-radius: 12px;
+}
+
+/* Main Content */
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(40, 90, 140, 0.05);
+}
+
+/* Footer */
+
+footer {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .side-bar {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .content {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

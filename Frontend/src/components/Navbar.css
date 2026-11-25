@@ -1,0 +1,62 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+.navbar {
+  width: 100%;
+  padding: 18px 7%;
+  background: #edf6ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px rgba(40, 90, 140, 0.06);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 27px;
+  font-weight: 700;
+  color: #244f78;
+  margin: 0;
+}
+
+.logo span {
+  color: #62a9db;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #455d73;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #2686c7;
+}
+
+.login-btn {
+  border: none;
+  background: #347fb5;
+  color: white;
+  padding: 11px 23px;
+  border-radius: 25px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #245f91;
+  transform: translateY(-2px);
+}
