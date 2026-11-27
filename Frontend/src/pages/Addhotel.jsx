@@ -1,11 +1,11 @@
-
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./Addhotel.css";
 
-function AddHotelForm() {
+function AddHotelForm({ onClose,onAddHotel }) {
   const [imagePreview, setImagePreview] = useState(null);
+
   const initialValues = {
     image: null,
     name: "",
@@ -20,11 +20,9 @@ function AddHotelForm() {
       .min(3, "Minimum 3 characters required")
       .required("Hotel name is required"),
 
-    city: Yup.string()
-      .required("City is required"),
+    city: Yup.string().required("City is required"),
 
-    location: Yup.string()
-      .required("Location is required"),
+    location: Yup.string().required("Location is required"),
 
     price: Yup.number()
       .typeError("Price must be a number")
@@ -44,12 +42,12 @@ function AddHotelForm() {
         "Only JPG, PNG and WebP images are allowed",
         (value) =>
           !value ||
-          ["image/jpeg", "image/png", "image/webp"].includes(value.type)
+          ["image/jpeg", "image/png", "image/webp"].includes(value.type),
       )
       .test(
         "fileSize",
         "Image size must be less than 5 MB",
-        (value) => !value || value.size <= 5 * 1024 * 1024
+        (value) => !value || value.size <= 5 * 1024 * 1024,
       ),
 
     description: Yup.string()
@@ -58,28 +56,38 @@ function AddHotelForm() {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log("Hotel Details:", values);
-
-    alert("Hotel details submitted successfully!");
-
-    resetForm();
-    setImagePreview(null);
+  const newHotel = {
+    ...values,
+    id: Date.now(),
+    price: Number(values.price),
+    rating: Number(values.rating),
+    image: URL.createObjectURL(values.image),
   };
+  console.log("New hotel:", newHotel);
+
+  onAddHotel(newHotel);
+
+  alert("Hotel added successfully!");
+
+  resetForm();
+  setImagePreview(null);
+  onClose();
+};
 
   return (
     <div className="hotel-form-container">
       <div className="hotel-form">
-
         <h2>Add Your Hotel</h2>
         <p>Enter your hotel details below.</p>
-
+        <button type="button" className="close-form" onClick={onClose}>
+          ×
+        </button>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
           {({ setFieldValue }) => (
-
             <Form>
               <div className="form-group">
                 <label htmlFor="hotel-image">Upload Hotel Image</label>
@@ -215,10 +223,9 @@ function AddHotelForm() {
                   className="error-message"
                 />
               </div>
-              <button type="submit" className="submit-hotel">
-                Add Hotel
-              </button>
-
+              <button type="submit" className="addhotel">
+                Submit Hotel
+              </button>     
             </Form>
           )}
         </Formik>

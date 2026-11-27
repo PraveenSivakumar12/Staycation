@@ -1,10 +1,10 @@
 
 import './HotelCard.css'
 
-function HotelCard({ hotel }) {
+function HotelCard({ hotel,onClick }) {
 
   return (
-    <div className="Product-card">
+    <div className="Product-card" onClick={ ()=> {console.log("Hotel card clicked:", hotel.name),onClick()}}>
 
       <div className="hotel-image">
         <img src={hotel.image} alt={hotel.name} />

@@ -1,12 +1,15 @@
 import "./Home.css";
 import HotelCard from "../ReuseComponent/HotelCard";
 import { useOutletContext } from "react-router-dom";
+import { useState } from "react";
 import Addhotel from "./Addhotel";
+import Hoteldetails from "../components/Hoteldetails";
 
 function Home() {
   const { appliedFilters } = useOutletContext();
-
-  const hotels = [
+  const [showForm, setShowForm] = useState(false);
+  const [hotelDetails, setHotelDetails] = useState(null);
+  const [hotels, setHotels] = useState([
     {
       id: 1,
       name: "Grand Palace Hotel",
@@ -62,7 +65,7 @@ function Home() {
       description:
         "A relaxing accommodation with scenic views and comfortable rooms.",
     },
-  ];
+  ]);
 
   const filteredHotels = hotels.filter((hotel) => {
     const matchCity =
@@ -91,10 +94,27 @@ function Home() {
         <div className="hotel-page-header">
           <h3>Staycation</h3>
           <span>Make your trip restful and comfortable</span>
-          <button className="addhotel" onClick={()=> setShowform(true)}>Add Hotel</button>
+          <button
+            type="button"
+            className="addhotel"
+            onClick={() => setShowForm(true)}
+          >
+            Add Hotel
+          </button>
         </div>
       </div>
-      <div className="search-found"> 
+      {showForm && (
+        <Addhotel
+          onClose={() => setShowForm(false)}
+          onAddHotel={(newHotel) => {
+            console.log("Received in Home:", newHotel);
+
+            setHotels((previousHotels) => [...previousHotels, newHotel]);
+          }}
+        />
+      )}
+
+      <div className="search-found">
         {filteredHotels.length}{" "}
         {filteredHotels.length === 1 ? "hotel found" : "hotels found"}
       </div>
@@ -103,10 +123,22 @@ function Home() {
           <p>No hotels found matching your filters.</p>
         ) : (
           filteredHotels.map((hotel) => (
-            <HotelCard key={hotel.id} hotel={hotel} />
+            <HotelCard
+              key={hotel.id}
+              onClick={() => {
+                setHotelDetails(hotel);
+              }}
+              hotel={hotel}
+            />
           ))
         )}
       </div>
+      {hotelDetails && (
+        <Hoteldetails
+          hotel={hotelDetails}
+          onClose={() => setHotelDetails(null)}
+        />
+      )}
     </>
   );
 }

@@ -1,13 +1,17 @@
-
-import React from 'react'
-import './Navbar.css'
+import React from "react";
+import "./Navbar.css";
 
 function Navbar() {
   return (
     <nav className="navbar">
-      <h2 className="logo">
-        Stay<span>cation.</span>
-      </h2>
+      <div className="image-logo">
+        <img
+          src="/Staycation-logo.png"
+          alt="Staycation Logo"
+          className="image-logo"
+        />
+      </div>
+     
 
       <div className="nav-links">
         <a href="/">Home</a>
@@ -16,11 +20,9 @@ function Navbar() {
         <a href="/contact">Contact</a>
       </div>
 
-      <button className="login-btn">
-        Login / Sign Up
-      </button>
+      <button className="login-btn">Login / Sign Up</button>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
